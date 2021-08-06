@@ -10,8 +10,6 @@ import {FlashLoanReceiverBase} from "@aave/protocol-v2/contracts/flashloan/base/
 import {ILendingPoolAddressesProvider} from "@aave/protocol-v2/contracts/interfaces/ILendingPoolAddressesProvider.sol";
 import {ILendingPool} from "@aave/protocol-v2/contracts/interfaces/ILendingPool.sol";
 
-import "hardhat/console.sol";
-
 //partypooper contract can be used to trigger a maxbid from partybid
 contract PartyPooper is Ownable, FlashLoanReceiverBase {
 
@@ -35,7 +33,6 @@ contract PartyPooper is Ownable, FlashLoanReceiverBase {
     {
 
         (address partyBid) = abi.decode(params, (address));
-        console.log("partybid address post encoding: %s", partyBid);
         //bid amount that should be equal to amount loaned
         uint256 flashLoanBidAmount = amounts[0];
         require(flashLoanBidAmount > getMinAuctionBid(partyBid), "bid below required min!");
@@ -76,9 +73,8 @@ contract PartyPooper is Ownable, FlashLoanReceiverBase {
         modes[0] = 0;
 
         address onBehalfOf = address(this);
-        // encode partybid address
-        console.log("partybid address pre-encoding: %s", partyBid);
 
+        // encode partybid address
         bytes memory params = abi.encode(partyBid);
         uint16 referralCode = 0;
 
