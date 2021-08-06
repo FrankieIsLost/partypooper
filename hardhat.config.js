@@ -27,6 +27,10 @@ module.exports = {
         blockNumber: 12967039
       }
     }, 
+    mainnet: {
+      url: `https://eth-mainnet.alchemyapi.io/v2/${process.env.ALCHEMY_KEY}`,
+      accounts: [process.env.DEPLOYER_PRIVATE_KEY]
+    },
   } ,
   mocha: {
     timeout: 20000

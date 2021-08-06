@@ -9,8 +9,6 @@ interface IPartyBid {
     function highestBid() external view returns (uint256);
     //market wrapper contract exposing interface for market auctioning the NFT
     function marketWrapper() external view returns (address);
-    // // ID of token within NFT contract
-    // function tokenId() external view returns (uint256);
     // ID of auction within market contract
     function auctionId() external view returns (uint256);
     

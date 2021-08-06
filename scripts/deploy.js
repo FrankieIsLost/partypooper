@@ -5,9 +5,7 @@ const path = require('path');
 
 async function main() {
     
-    const partyBidAddress = "0x3b2185065f8e8db96F1294B2EF43F2D485E684E4";
     const aaveLendingPoolAddress = "0xB53C1a33016B2DC2fF3653530bfF1848a515c8c5";
-
     
     const [deployer] = await ethers.getSigners();
     console.log(
@@ -18,20 +16,17 @@ async function main() {
     console.log("Account balance before deploy:", (await deployer.getBalance()).toString());
   
     const PartyPooper = await hre.ethers.getContractFactory("PartyPooper");
-    const partypooper = await PartyPooper.deploy(partyBidAddress, aaveLendingPoolAddress, {value: 1});
+    const partypooper = await PartyPooper.deploy(aaveLendingPoolAddress, {gasLimit: 2000000});
 
     await partypooper.deployed();
   
     console.log("Partypooper address:", partypooper.address);
     console.log("Account balance after deploy:", (await deployer.getBalance()).toString());
-
-
   
     const deployInfo = {
       network: hre.network.name,
       addresses: {
         partyPoopeerAddress: partypooper.address,
-        partyBidAddress: partyBidAddress,
         aaveLendingPoolAddress: aaveLendingPoolAddress
       }
     };
