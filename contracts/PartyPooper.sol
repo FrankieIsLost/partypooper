@@ -13,7 +13,6 @@ import {ILendingPool} from "@aave/protocol-v2/contracts/interfaces/ILendingPool.
 //partypooper contract can be used to trigger a maxbid from partybid
 contract PartyPooper is Ownable, FlashLoanReceiverBase {
 
-    // address internal immutable partyBid;
     uint8 internal constant FEE_PERCENT = 5;
     address internal constant WETH = 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2;
 
